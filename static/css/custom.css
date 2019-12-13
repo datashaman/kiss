@@ -1,0 +1,16 @@
+.u-photo {
+    border: 5px solid #eee;
+    border-radius: 50;
+    margin: 20px 0;
+    filter: gray;
+
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+}
+
+.u-photo:hover {
+    border: 5px solid #333;
+
+    -webkit-filter: grayscale(1);
+    filter: none;
+}

@@ -1,10 +1,22 @@
 <section class="section">
-  <div class="container has-text-centered">
-    <p>{{ .Site.Copyright | safeHTML }}</p>
-    {{if .Site.Params.Info.poweredby}}
-      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/ribice/kiss">Kiss</a>.</p>
-    {{ end }}
-  </div>
+    <div class="container has-text-centered">
+        <div class="h-card vcard">
+            <img class="u-photo" src="/images/headshot.png" alt="" />
+
+            <p>
+                &copy; 2019 <a class="p-nickname u-email email metatag" rel="me" href="mailto:{{ .Site.Params.Social.Email }}">
+                    {{ .Site.Author.nick }}
+                </a>
+                / <a style="text-decoration: none" href={{ .Site.BaseURL }} class="p-name u-url url author metatag" rel="me">
+                    {{ .Site.Author.name }}
+                </a>
+            </p>
+        </div>
+
+        {{if .Site.Params.Info.poweredby}}
+        <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/ribice/kiss">Kiss</a>.</p>
+        {{ end }}
+    </div>
 </section>
 {{ if .Site.GoogleAnalytics }}
 {{ template "_internal/google_analytics_async.html" . }}
