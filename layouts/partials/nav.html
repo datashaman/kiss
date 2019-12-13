@@ -12,7 +12,7 @@
           {{- range $platform := $social.config.platforms -}}
           {{- with $username := ( index $social $platform ) -}}
           <a class="level-item" aria-label="{{ $platform }}" href='{{ print ( index $.Site.Data.theme.social.base $platform ) $username }}'
-             target='_blank' rel='{{ if or (eq $platform "twitter") (eq $platform "github") }}me {{ end }}noopener'>
+             target='_blank' rel='{{ if eq $platform "github" }}me {{ end }}noopener'>
             <span class="icon">
               <i class>
                 {{- partial "svg/icons" $platform -}}
