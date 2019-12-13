@@ -32,10 +32,9 @@
         </article>
     </div>
 </section>
-{{ if (and (.Site.Params.Info.codeCopy) (findRE "<pre" .Content 1)) }}
-    <script src="/js/copycode.js"></script>
+{{ if findRE "<pre" .Content 1 }}
+    <script src="/js/copycode.bundle.js"></script>
 {{ end }}
-<script src="/js/jquery.js"></script>
-<script src="/js/single.js"></script>
+<script src="/js/single.bundle.js"></script>
 {{ partial "disqus" . }}
 {{ partial "footer" . }}

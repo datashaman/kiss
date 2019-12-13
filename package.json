@@ -1,0 +1,20 @@
+{
+  "name": "datashaman-kiss",
+  "version": "1.0.0",
+  "description": "![](https://www.ribice.ba/img/2/hugo-kiss.png)",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "start": "webpack-dev-server --open"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1"
+  }
+}
