@@ -1,6 +1,6 @@
 var post_url = window.location.href;
 
-$(document).ready(function(){	
+$(document).ready(function () {	
     $("ul#mentions-list").empty();
 
     $.getJSON("https://webmention.io/api/mentions?per-page=50&page=0&jsonp=?", {
@@ -14,35 +14,35 @@ $(document).ready(function(){
             $("#post-mentions").show();
         }
 
-        $.each(data.links, function(i, v){
+        $.each(data.links, function (i, v) {
             var activity_type = data.links[i].activity.type;
 
-            if(data.links[i].data.author && data.links[i].data.author.name){
+            if (data.links[i].data.author && data.links[i].data.author.name) {
                 var men_content = "";
-                if(activity_type && activity_type == "like"){
-                    if(!social_media_likes){
+                if (activity_type && activity_type == "like") {
+                    if (!social_media_likes) {
                         social_media_likes = "<li class=\"mention-social\"> ";
                     }
                     social_media_likes = social_media_likes + 
                         "<a href=\"" + data.links[i].data.url + "\">"
                         + data.links[i].data.author.name + "</a>, ";
-                } else if(activity_type && activity_type == "repost"){
-                    if(!social_media_repost){
+                } else if (activity_type && activity_type == "repost") {
+                    if (!social_media_repost) {
                         social_media_repost = "<li class=\"mention-social\"> ";
                     }
                     social_media_repost = social_media_repost + 
                         "<a href=\"" + data.links[i].data.url + "\">"
                         + data.links[i].data.author.name + "</a>, ";
-                } else if(activity_type && activity_type == "link"){
-                    if(!social_media_post){
+                } else if (activity_type && activity_type == "link") {
+                    if (!social_media_post) {
                         social_media_post = "<li class=\"mention-social\"> ";
                     }
                     social_media_post = social_media_post + 
                         "<a href=\"" + data.links[i].data.url + "\">"
                         + data.links[i].data.author.name + "</a>, ";
-                } else if(activity_type && activity_type == "reply"){
+                } else if (activity_type && activity_type == "reply") {
                     let mention_date = new Date(data.links[i].verified_date);
-                    if(data.links[i].data.content) {
+                    if (data.links[i].data.content) {
                         men_content = data.links[i].data.content;
                     }
                     $("ul#mentions-list").prepend( "<li class=\"mention\">"
@@ -60,17 +60,17 @@ $(document).ready(function(){
                 }
             }	
         });
-        if(social_media_post){
+        if (social_media_post) {
             social_media_post = social_media_post.substr(0, social_media_post.length - 2);
             social_media_post = social_media_post + " <span class=\"commented\">linked to this.</span></li>";
             $("ul#mentions-list").prepend(social_media_post);
         }			
-        if(social_media_repost){
+        if (social_media_repost) {
             social_media_repost = social_media_repost.substr(0, social_media_repost.length - 2);
             social_media_repost = social_media_repost + " <span class=\"commented\">reposted this.</span></li>";
             $("ul#mentions-list").prepend(social_media_repost);
         }
-        if(social_media_likes){
+        if (social_media_likes) {
             social_media_likes = social_media_likes.substr(0, social_media_likes.length - 2);
             social_media_likes = social_media_likes  + " <span class=\"commented\">liked this.</span></li>";
             $("ul#mentions-list").prepend(social_media_likes);
