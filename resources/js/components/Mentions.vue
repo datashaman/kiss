@@ -56,7 +56,7 @@ export default {
                 to: new Date(dt),
             }
 
-            console.log(params)
+            console.log('params', dt, params)
 
             return vagueTime.get(params)
         }
