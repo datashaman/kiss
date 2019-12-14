@@ -2,19 +2,15 @@
     <div v-if="mentions.length" class="post-mentions">
         <ul class="mentions-list" id="mentions-list">
             <template v-for="mention in mentions">
-                <li class="mention-social simple">
-                    <a :href="mention.data.url">{{ mention.data.author.name }}</a>
-                    <span class="commented">{{ activities[mention.activity.type] }}</span>
-                    <time :datetime="mention.verified_date">{{ vagueTime(mention.verified_date) }}</time>
-                </li>
-
-                <li class="mention">
-                    <div class="mention-author u-author">
-                        <img :src="mention.data.author.photo" class="u-photo" :title="mention.data.author.name" width="40">
-                        <a :href="mention.data.author.url">{{ mention.data.author.name }}</a>
+                <li class="u-comment h-cite">
+                    <div class="u-author">
+                        <img class="u-photo" :src="mention.data.author.photo" :title="mention.data.author.name" width="40"/>
+                        <a class="u-author h-card" :href="mention.data.author.url">{{ mention.data.author.name }}</a>
                         <span class="commented">{{ activities[mention.activity.type] }}</span>
-                        <time :datetime="mention.verified_date">{{ vagueTime(mention.verified_date) }}</time>
-                        <div v-if="mention.data.content" class="mention-text">{{ mention.data.content }}</div>
+                        <a class="u-url" :href="mention.source">
+                            <time class="dt-published" :datetime="mention.verified_date">{{ vagueTime(mention.verified_date) }}</time>
+                        </a>
+                        <p v-if="mention.data.content" class="p-content" v-html="mention.data.content"/>
                     </div>
                 </li>
             </template>
@@ -43,6 +39,8 @@ export default {
             if (err) {
                 console.error(err)
             } else {
+                const data = require('./mock.json')
+
                 this.$store.commit('setMentions', {
                     mentions: data.links,
                 })
@@ -56,9 +54,6 @@ export default {
                 to: new Date(dt),
             }
 
-            console.log('params', dt, params)
-
-            console.log('vt2', vagueTime)
             return vagueTime.get(params)
         }
     }
