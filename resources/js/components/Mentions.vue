@@ -1,16 +1,19 @@
 <template>
     <div v-if="mentions.length" class="post-mentions">
+        <h2>Mentions</h2>
         <ul class="mentions-list" id="mentions-list">
             <template v-for="mention in mentions">
                 <li class="u-comment h-cite">
                     <div class="u-author">
                         <img class="u-photo" :src="mention.data.author.photo" :title="mention.data.author.name" width="40"/>
-                        <a class="u-author h-card" :href="mention.data.author.url">{{ mention.data.author.name }}</a>
-                        <span class="commented">{{ activities[mention.activity.type] }}</span>
-                        <a class="u-url" :href="mention.source">
-                            <time class="dt-published" :datetime="mention.verified_date">{{ vagueTime(mention.verified_date) }}</time>
-                        </a>
-                        <p v-if="mention.data.content" class="p-content" v-html="mention.data.content"/>
+                        <div style="width: 90%">
+                            <a class="u-author h-card" :href="mention.data.author.url">{{ mention.data.author.name }}</a>
+                            <span class="commented">{{ activities[mention.activity.type] }}</span>
+                            <a class="u-url" :href="mention.source">
+                                <time class="dt-published" :datetime="mention.verified_date" :title="new Date(mention.verified_date)">{{ vagueTime(mention.data.published) }}</time>
+                            </a>
+                            <p v-if="mention.data.content" class="p-content" v-html="mention.data.content"/>
+                        </div>
                     </div>
                 </li>
             </template>
@@ -39,7 +42,7 @@ export default {
             if (err) {
                 console.error(err)
             } else {
-                // const data = require('./mock.json')
+                const data = require('./mock.json')
 
                 this.$store.commit('setMentions', {
                     mentions: data.links,
@@ -59,3 +62,11 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.u-photo {
+    float: left;
+    width: 10%;
+    margin-right: 10px;
+}
+</style>
