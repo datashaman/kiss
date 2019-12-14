@@ -32,9 +32,13 @@ export default {
         }
     },
     mounted() {
+        console.log('mounted')
+
         jsonp("https://webmention.io/api/mentions?per-page=50&page=0&target=" + encodeURIComponent(window.location.href), {
             param: 'jsonp',
         }, (err, data) => {
+            console.log('jsonp', err, data)
+
             if (err) {
                 console.error(err)
             } else {
