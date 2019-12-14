@@ -51,8 +51,14 @@ export default {
     },
     methods: {
         vagueTime: function (dt) {
-            console.log(dt)
-            return vagueTime.get({ to: new Date(dt) })
+            const params = {
+                from: Date.now(),
+                to: new Date(dt),
+            }
+
+            console.log(params)
+
+            return vagueTime.get(params)
         }
     }
 }
