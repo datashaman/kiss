@@ -5,6 +5,7 @@
                 <li class="mention-social simple">
                     <a :href="mention.data.url">{{ mention.data.author.name }}</a>
                     <span class="commented">{{ activities[mention.activity.type] }}</span>
+                    <time :datetime="mention.verified_date">{{ vagueTime({ to: mention.verified_date }) }}</time>
                 </li>
 
                 <li class="mention">
@@ -12,7 +13,7 @@
                         <img :src="mention.data.author.photo" class="u-photo" :title="mention.data.author.name" width="40">
                         <a :href="mention.data.author.url">{{ mention.data.author.name }}</a>
                         <span class="commented">{{ activities[mention.activity.type] }}</span>
-                        <time :datetime="mention.verified_date">{{ mention.verified_date }}</time>
+                        <time :datetime="mention.verified_date">{{ vagueTime({ to: mention.verified_date }) }}</time>
                         <div v-if="mention.data.content" class="mention-text">{{ mention.data.content }}</div>
                     </div>
                 </li>
@@ -23,6 +24,7 @@
 
 <script>
 const jsonp = require('jsonp')
+const vagueTime = require('vague-time')
 const Vuex = require('vuex')
 
 import { mapState } from 'vuex'
