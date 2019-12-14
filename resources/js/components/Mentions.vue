@@ -5,7 +5,7 @@
                 <li class="mention-social simple">
                     <a :href="mention.data.url">{{ mention.data.author.name }}</a>
                     <span class="commented">{{ activities[mention.activity.type] }}</span>
-                    <time :datetime="mention.verified_date">{{ vagueTime(mention.verified_date) }}</time>
+                    <time :datetime="mention.verified_date">{{ generateVagueTime(mention.verified_date) }}</time>
                 </li>
 
                 <li class="mention">
@@ -50,7 +50,7 @@ export default {
         })
     },
     methods: {
-        vagueTime: function (dt) {
+        generateVagueTime: function (dt) {
             const params = {
                 from: Date.now(),
                 to: new Date(dt),
