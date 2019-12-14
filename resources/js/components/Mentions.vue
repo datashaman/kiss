@@ -50,7 +50,7 @@ export default {
         })
     },
     methods: {
-        vagueTime(dt) {
+        vagueTime: function (dt) {
             return vagueTime({ to: dt })
         }
     }
