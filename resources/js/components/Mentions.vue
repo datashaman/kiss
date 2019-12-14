@@ -39,7 +39,7 @@ export default {
             if (err) {
                 console.error(err)
             } else {
-                const data = require('./mock.json')
+                // const data = require('./mock.json')
 
                 this.$store.commit('setMentions', {
                     mentions: data.links,
