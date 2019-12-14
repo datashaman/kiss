@@ -51,6 +51,7 @@ export default {
     },
     methods: {
         vagueTime: function (dt) {
+            console.log(dt)
             return vagueTime.get({ to: new Date(dt) })
         }
     }
