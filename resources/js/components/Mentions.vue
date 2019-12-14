@@ -25,11 +25,14 @@
 const jsonp = require('jsonp')
 const Vuex = require('vuex')
 
+import { mapState } from 'vuex'
+
 export default {
-    data() {
-        return {
-            mentions: [],
-        }
+    computed: {
+        ...mapState([
+            'activities',
+            'mentions',
+        ]),
     },
     mounted() {
         jsonp("https://webmention.io/api/mentions?per-page=50&page=0&target=" + encodeURIComponent(window.location.href), {
