@@ -21,7 +21,7 @@ const store = new Vuex.Store({
             state.mentions.push(payload.mention)
         },
         setMentions(state, payload) {
-            console.log(payload)
+            console.log('mutating', payload)
             state.mentions = payload.mentions
         },
     },
