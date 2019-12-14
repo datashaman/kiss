@@ -22,7 +22,7 @@
 </template>
 
 <script>
-const axios = require('axios')
+const jsonp = require('jsonp')
 const Vuex = require('vuex')
 
 export default {
@@ -32,12 +32,16 @@ export default {
         }
     },
     mounted() {
-        axios.get("https://webmention.io/api/mentions?per-page=50&page=0&jsonp=?", {
-            target: window.location.href,
-        }).then((data) => {
-            store.commit('addMentions', {
-                mentions: data.links,
-            })
+        jsonp("https://webmention.io/api/mentions?per-page=50&page=0&target=" + encodeURIComponent(window.location.href), {
+            param: 'jsonp',
+        }, (err, data) => {
+            if (err) {
+                console.error(err)
+            } else {
+                this.$store.commit('setMentions', {
+                    mentions: data.links,
+                })
+            }
         })
     },
 }
