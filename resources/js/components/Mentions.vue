@@ -25,6 +25,7 @@
 <script>
 const jsonp = require('jsonp')
 const vagueTime = require('vague-time')
+console.log('vt', vagueTime)
 const Vuex = require('vuex')
 
 import { mapState } from 'vuex'
@@ -58,6 +59,7 @@ export default {
 
             console.log('params', dt, params)
 
+            console.log('vt2', vagueTime)
             return vagueTime.get(params)
         }
     }
