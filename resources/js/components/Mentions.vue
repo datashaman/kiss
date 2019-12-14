@@ -43,7 +43,7 @@ export default {
                 console.error(err)
             } else {
                 this.$store.commit('setMentions', {
-                    mentions: data.links,
+                    mentions: data.mentions,
                 })
             }
         })
