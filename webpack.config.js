@@ -1,5 +1,6 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require('path')
+const webpack = require('webpack')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
     mode: 'development',
@@ -13,10 +14,24 @@ module.exports = {
         path: path.resolve(__dirname, "static/js")
     },
     watch: true,
+    module: {
+        rules: [
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader',
+            },
+        ],
+    },
     plugins: [
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',
         }),
-    ]
-};
+        new VueLoaderPlugin(),
+    ],
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.common.js'
+        }
+    },
+}
