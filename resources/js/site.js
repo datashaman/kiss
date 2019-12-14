@@ -1,27 +1,25 @@
-$(document).ready(function () {
-    var $name = $("#nav-name");
-    var $main = $("#nav-main");
-    var incremented = 0;
+const nameElement = document.getElementById('nav-name')
+const parentElement = document.getElementById('nav-main')
 
-    function shiftNavIcons() {
-        var $heading = $("#nav-heading");
+let incremented = 0
 
-        if($name[0].offsetWidth < ($heading[0].offsetWidth+10)) {
-            $main.addClass('nav-shifted');
-        } else {
-            incremented++;
-            if(incremented > 5 && $main[0].offsetWidth > 445) {
-                $main.removeClass('nav-shifted');
-                incremented = 0;
-            }
-            
+function shiftNavIcons () {
+    let headingElement = document.getElementById('nav-heading')
+
+    if (nameElement.offsetWidth < headingElement.offsetWidth + 10) {
+        parentElement.classList.add('nav-shifted')
+    } else {
+        incremented++;
+
+        if (incremented > 5 && parentElement.offsetWidth > 445) {
+            parentElement.className = parentElement.className.replace(/\bnav-shifted\b/g, '')
+            incremented = 0
         }
-        
-    };
+    }
+}
 
-    $(window).on('resize', (event) => {
-        shiftNavIcons();
-    });
-
+window.addEventListener('resize', (event) => {
     shiftNavIcons();
-});
+})
+
+shiftNavIcons()
