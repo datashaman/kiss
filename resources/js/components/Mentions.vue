@@ -49,5 +49,10 @@ export default {
             }
         })
     },
+    methods: {
+        vagueTime(dt) {
+            return vagueTime({ to: dt })
+        }
+    }
 }
 </script>
