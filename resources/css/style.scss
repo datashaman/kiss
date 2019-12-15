@@ -1,0 +1,21 @@
+@import '~purecss/build/grids.css';
+
+.mention {
+    margin-bottom: 20px;
+
+    .u-photo {
+        padding: 20px;
+    }
+
+    .u-author {
+        font-weight: bolder;
+    }
+
+    .p-content {
+        line-height: 24px;
+    }
+}
+
+.muted {
+    color: #999;
+}

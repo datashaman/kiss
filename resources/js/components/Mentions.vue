@@ -3,13 +3,13 @@
         <h2>Mentions</h2>
         <ul class="mentions-list" id="mentions-list">
             <template v-for="mention in mentions">
-                <li class="u-comment h-cite">
-                    <div class="u-author">
-                        <img class="u-photo" :src="mention.data.author.photo" :title="mention.data.author.name" width="40"/>
-                        <div style="width: 90%">
+                <li class="mention u-comment h-cite">
+                    <div class="u-author pure-g">
+                        <img class="mention-photo u-photo pure-u-1-5" :src="mention.data.author.photo" :title="mention.data.author.name" width="40"/>
+                        <div class="mention-card pure-u-4-5">
                             <a class="u-author h-card" :href="mention.data.author.url">{{ mention.data.author.name }}</a>
-                            <span class="commented">{{ activities[mention.activity.type] }}</span>
-                            <a class="u-url" :href="mention.source">
+                            <span class="commented muted">{{ activities[mention.activity.type] }}</span>
+                            <a class="u-url muted" :href="mention.source">
                                 <time class="dt-published" :datetime="mention.verified_date" :title="new Date(mention.verified_date)">{{ vagueTime(mention.data.published) }}</time>
                             </a>
                             <p v-if="mention.data.content" class="p-content" v-html="mention.data.content"/>
@@ -42,7 +42,7 @@ export default {
             if (err) {
                 console.error(err)
             } else {
-                const data = require('./mock.json')
+                // const data = require('./mock.json')
 
                 this.$store.commit('setMentions', {
                     mentions: data.links,
@@ -64,9 +64,17 @@ export default {
 </script>
 
 <style scoped>
-.u-photo {
-    float: left;
-    width: 10%;
-    margin-right: 10px;
+.post-mentions {
+    padding-top: 15px;
+    margin-top: 10px;
+    border-top: 1px solid #AEADAD;
+    border-bottom: 1px solid #AEADAD;
+    font-size: 16px;
+}
+
+.post-mentions ul {
+    list-style: none;
+    padding: 0;
+    margin-left: 0;
 }
 </style>

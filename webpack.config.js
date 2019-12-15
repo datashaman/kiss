@@ -24,6 +24,14 @@ module.exports = {
                 test: /\.css/,
                 use: [ 'vue-style-loader', 'css-loader'],
             },
+            {
+                test: /\.s[ac]ss$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
+                ],
+            },
         ],
     },
     plugins: [
